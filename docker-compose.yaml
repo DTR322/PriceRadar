@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: price_radar_db
+    restart: always
+    environment:
+      POSTGRES_USER: radar_admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: priceradar
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    ports:
+      - "5432:5432"
+    volumes:
+      - pr_data:/var/lib/postgresql/data
+
+volumes:
+  pr_data:
