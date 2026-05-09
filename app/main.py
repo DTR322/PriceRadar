@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.products.router import router as router_products
+from app.finance.router import router as router_products
 
 app = FastAPI()
 

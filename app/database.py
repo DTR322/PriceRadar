@@ -1,7 +1,8 @@
 from datetime import datetime
+from decimal import Decimal
 from typing import Annotated
 
-from sqlalchemy import func
+from sqlalchemy import func, Numeric
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase, declared_attr, Mapped, mapped_column
 
@@ -18,9 +19,11 @@ updated_at = Annotated[datetime, mapped_column(server_default=func.now(), onupda
 str_uniq = Annotated[str, mapped_column(unique=True, nullable=False)]
 str_null_true = Annotated[str, mapped_column(nullable=True)]
 str_indexed = Annotated[str, mapped_column(index=True, nullable=False)]
+decimal_14_2 = Annotated[Decimal, mapped_column(Numeric(14, 2))]
 
 
-class BASE(AsyncAttrs, DeclarativeBase):
+
+class Base(AsyncAttrs, DeclarativeBase):
     __abstract__ = True
 
     @declared_attr.directive
